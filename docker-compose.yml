@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  github-backup:
+    build: "./github-backup-automation/"
+    container_name: "github-backup"
+    hostname: "github-backup"
+    restart: always
+
+    environment:
+      - USERS=[user|company]
+      - GITHUB_TOKEN=[userToken]
+      - MAX_BACKUPS=10
+      - TIME_ZONE=Europe/Madrid
+      - DELAY_TIME=1d
+      - TEAMSWEBHOOK=[urlTeamsWebHook]
+    volumes:
+      - [localUrl|volume]:/srv/var
